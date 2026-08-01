@@ -1,0 +1,8 @@
+@if (visible) {
+  <div class="overlay show" (click)="onBackdrop($event)">
+    <div class="panel">
+      <h3>{{ title }}</h3>
+      <ng-content></ng-content>
+    </div>
+  </div>
+}

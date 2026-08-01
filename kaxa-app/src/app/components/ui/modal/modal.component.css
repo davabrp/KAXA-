@@ -1,0 +1,10 @@
+.overlay {
+  position: fixed; inset: 0; background: rgba(10,10,10,.4);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; padding: 20px;
+}
+.panel {
+  background: var(--paper); border: 1.5px solid var(--ink);
+  box-shadow: 10px 10px 0 var(--ink); width: 100%; max-width: 420px; padding: 28px;
+}
+h3 { font-size: 18px; font-weight: 700; margin-bottom: 20px; }

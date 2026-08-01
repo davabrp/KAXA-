@@ -1,0 +1,45 @@
+/* global styles*/
+:root {
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --paper-alt: #f4f4f2;
+  --gray-600: #5c5c5c;
+  --gray-400: #9a9a9a;
+  --gray-200: #ececea;
+  --line: #dcdcd8;
+
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+  --display: 'Archivo Black', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper-alt);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+button, input, select {
+  font-family: var(--sans);
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}

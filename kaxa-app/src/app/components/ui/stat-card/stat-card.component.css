@@ -1,0 +1,9 @@
+.stat { background: var(--paper); padding: 18px 20px; border: 1.5px solid var(--ink); }
+.label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-600); margin-bottom: 8px; }
+.value { font-size: 24px; font-weight: 700; letter-spacing: -.01em; }
+.warn { color: #b45309; }
+.bad { color: #b91c1c; }.stat { background: var(--paper); padding: 18px 20px; border: 1.5px solid var(--ink); }
+.label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-600); margin-bottom: 8px; }
+.value { font-size: 24px; font-weight: 700; letter-spacing: -.01em; }
+.warn { color: #b45309; }
+.bad { color: #b91c1c; }

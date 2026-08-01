@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="field">
+    <label>Nombre</label>
+    <input type="text" formControlName="nombre" placeholder="Ej. Coca-Cola 600ml">
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Categoría</label>
+      <select formControlName="categoriaId">
+        @for (c of categoryService.categories(); track c.id) {
+          <option [value]="c.id">{{ c.nombre }}</option>
+        }
+      </select>
+    </div>
+    <div class="field">
+      <label>Código</label>
+      <input type="text" formControlName="codigo" placeholder="750100000">
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Precio (MXN)</label>
+      <input type="number" formControlName="precio" min="0" step="0.5">
+    </div>
+    <div class="field">
+      <label>Stock inicial</label>
+      <input type="number" formControlName="stock" min="0" step="1">
+    </div>
+  </div>
+  <div class="field">
+    <label>Stock mínimo (alerta)</label>
+    <input type="number" formControlName="minStock" min="0" step="1">
+  </div>
+  <div class="panel-actions">
+    <button type="button" class="btn btn-ghost" (click)="cancel.emit()">Cancelar</button>
+    <button type="submit" class="btn" [disabled]="form.invalid">Guardar</button>
+  </div>
+</form>

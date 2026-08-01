@@ -1,0 +1,43 @@
+<div class="view-header">
+  <div>
+    <h1>Productos</h1>
+    <p>Catálogo completo de lo que vendes.</p>
+  </div>
+  <button class="btn" (click)="showForm.set(true)">+ Nuevo producto</button>
+</div>
+
+<div class="stats">
+  <app-stat-card label="Productos activos" [value]="productService.products().length"></app-stat-card>
+  <app-stat-card label="Categorías" [value]="categoryService.categories().length"></app-stat-card>
+  <app-stat-card label="Valor de inventario" [value]="'$' + productService.valorInventario().toFixed(2)"></app-stat-card>
+  <app-stat-card label="Alertas de stock" [value]="productService.bajoStock() + productService.agotados()"
+    [variant]="productService.agotados() ? 'bad' : (productService.bajoStock() ? 'warn' : '')"></app-stat-card>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Producto</th><th>Categoría</th><th class="num">Precio</th><th class="num">Stock</th><th></th></tr>
+    </thead>
+    <tbody>
+      @for (p of productService.products(); track p.id) {
+        <tr>
+          <td>
+            <div class="prod-name">{{ p.nombre }}</div>
+            <div class="prod-code">#{{ p.codigo }}</div>
+          </td>
+          <td><span class="badge">{{ categoryService.nameOf(p.categoriaId) }}</span></td>
+          <td class="num">{{ '$' + p.precio.toFixed(2) }}</td>
+          <td class="num">{{ p.stock }}</td>
+          <td><button class="icon-btn" (click)="productService.remove(p.id)">✕</button></td>
+        </tr>
+      } @empty {
+        <tr><td colspan="5"><div class="empty">Todavía no hay productos. Crea el primero.</div></td></tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<app-modal [visible]="showForm()" title="Nuevo producto" (close)="showForm.set(false)">
+  <app-producto-form (save)="onSave($event)" (cancel)="showForm.set(false)"></app-producto-form>
+</app-modal>
