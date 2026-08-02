@@ -1,0 +1,33 @@
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 190px;
+}
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+.bar-value {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--gray-600);
+  margin-bottom: 6px;
+}
+.bar {
+  width: 100%;
+  max-width: 32px;
+  background: var(--ink);
+  transition: height .3s ease;
+}
+.bar-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  margin-top: 8px;
+}

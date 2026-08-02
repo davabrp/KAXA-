@@ -1,0 +1,9 @@
+<div class="bars">
+  @for (d of data; track d.label) {
+    <div class="bar-col">
+      <div class="bar-value">{{ d.value }}</div>
+      <div class="bar" [style.height.%]="pct(d.value)"></div>
+      <div class="bar-label">{{ d.label }}</div>
+    </div>
+  }
+</div>
