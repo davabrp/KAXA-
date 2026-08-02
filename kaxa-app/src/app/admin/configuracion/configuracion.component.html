@@ -1,1 +1,59 @@
-<p>configuracion works!</p>
+<div class="view-header">
+  <div>
+    <h1>Configuración</h1>
+    <p>Personaliza la apariencia de tu panel. Los cambios se guardan en este equipo.</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><h2>Paletas predefinidas</h2></div>
+  <div class="palette-grid">
+    @for (t of themeService.presets; track t.id) {
+      <button
+        class="palette-card"
+        [class.active]="isActive(t)"
+        (click)="themeService.select(t)">
+        <div class="swatch">
+          <span class="sw" [style.background]="t.ink"></span>
+          <span class="sw" [style.background]="t.paper" [style.border]="'1px solid ' + t.line"></span>
+          <span class="sw" [style.background]="t.paperAlt"></span>
+        </div>
+        <div class="pname">{{ t.nombre }}</div>
+        @if (isActive(t)) { <div class="pcheck">✓ Activa</div> }
+      </button>
+    }
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head">
+    <h2>Personalizado</h2>
+    <button class="btn-reset" (click)="themeService.reset()">Restablecer</button>
+  </div>
+  <div class="custom-grid">
+    <div class="field">
+      <label>Color principal (textos, sidebar)</label>
+      <div class="color-row">
+        <input type="color" [value]="themeService.current().ink" (input)="onInkChange($any($event.target).value)">
+        <span class="hex">{{ themeService.current().ink }}</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Fondo general del panel</label>
+      <div class="color-row">
+        <input type="color" [value]="themeService.current().paperAlt" (input)="onPaperAltChange($any($event.target).value)">
+        <span class="hex">{{ themeService.current().paperAlt }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="preview">
+    <div class="preview-label">Vista previa</div>
+    <div class="preview-box">
+      <div class="preview-sidebar"></div>
+      <div class="preview-content">
+        <div class="preview-card"></div>
+        <div class="preview-card short"></div>
+      </div>
+    </div>
+  </div>
+</div>
