@@ -3,7 +3,7 @@
     <h1>Productos</h1>
     <p>Catálogo completo de lo que vendes.</p>
   </div>
-  <button class="btn" (click)="showForm.set(true)">+ Nuevo producto</button>
+<button class="btn" (click)="openProductForm($event)">+ Nuevo producto</button>
 </div>
 
 <div class="stats">
@@ -38,6 +38,11 @@
   </table>
 </div>
 
-<app-modal [visible]="showForm()" title="Nuevo producto" (close)="showForm.set(false)">
+<app-modal
+  [visible]="showForm()"
+  [originX]="originX"
+  [originY]="originY"
+  title="Nuevo producto"
+  (close)="showForm.set(false)">
   <app-producto-form (save)="onSave($event)" (cancel)="showForm.set(false)"></app-producto-form>
 </app-modal>

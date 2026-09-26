@@ -1,0 +1,97 @@
+<div class="view-header">
+  <div>
+    <h1>Inventario</h1>
+    <p>Existencias actuales y bitácora de movimientos.</p>
+  </div>
+</div>
+
+<div class="stats">
+  <app-stat-card label="Unidades totales" [value]="totalUnidades()"></app-stat-card>
+  <app-stat-card label="En stock normal" [value]="normal()"></app-stat-card>
+  <app-stat-card label="Bajo stock" [value]="productService.bajoStock()" variant="warn"></app-stat-card>
+  <app-stat-card label="Agotados" [value]="productService.agotados()" variant="bad"></app-stat-card>
+</div>
+
+<div class="toolbar">
+  <input
+    type="text"
+    class="search"
+    placeholder="Buscar por nombre o código..."
+    [value]="search()"
+    (input)="search.set($any($event.target).value)">
+  <select class="cat-select" (change)="categoriaFiltro.set($any($event.target).value ? +$any($event.target).value : null)">
+    <option value="">Todas las categorías</option>
+    @for (c of categoryService.categories(); track c.id) {
+      <option [value]="c.id">{{ c.nombre }}</option>
+    }
+  </select>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th><th>Categoría</th><th class="num">Mínimo</th>
+        <th class="num">Existencias</th><th>Estado</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (p of filtered(); track p.id) {
+        <tr>
+          <td>
+            <div class="prod-name">{{ p.nombre }}</div>
+            <div class="prod-code">#{{ p.codigo }}</div>
+          </td>
+          <td><span class="badge">{{ categoryService.nameOf(p.categoriaId) }}</span></td>
+          <td class="num">{{ p.minStock }}</td>
+          <td class="num">{{ p.stock }}</td>
+          <td><app-badge [status]="statusOf(p)" [label]="labelOf(p)"></app-badge></td>
+          <td><button class="btn-mov" (click)="openMovement($event, p)">Registrar movimiento</button></td>
+        </tr>
+      } @empty {
+        <tr><td colspan="6"><div class="empty">Sin productos que coincidan con la búsqueda.</div></td></tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-head"><h2>Últimos movimientos</h2></div>
+  <table>
+    <thead>
+      <tr><th>Producto</th><th>Tipo</th><th class="num">Cantidad</th><th>Motivo</th><th>Fecha</th></tr>
+    </thead>
+    <tbody>
+      @for (m of inventoryService.recientes(); track m.id) {
+        <tr>
+          <td class="prod-name">{{ productoDe(m.productId)?.nombre }}</td>
+          <td>
+            <span class="mov-badge" [class]="m.tipo">
+              {{ m.tipo === 'entrada' ? '↑ Entrada' : m.tipo === 'salida' ? '↓ Salida' : '↔ Ajuste' }}
+            </span>
+          </td>
+          <td class="num">{{ m.cantidad }}</td>
+          <td class="motivo">{{ m.motivo }}</td>
+          <td class="fecha">{{ m.fecha }} · {{ m.hora }}</td>
+        </tr>
+      } @empty {
+        <tr><td colspan="5"><div class="empty">Todavía no hay movimientos registrados.</div></td></tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<app-modal
+  [visible]="showForm()"
+  [originX]="originX"
+  [originY]="originY"
+  title="Registrar movimiento"
+  (close)="showForm.set(false)">
+  @if (selectedProduct) {
+    <app-movimiento-form
+      [product]="selectedProduct"
+      (save)="onMovementSave($event)"
+      (cancel)="showForm.set(false)">
+    </app-movimiento-form>
+  }
+</app-modal>

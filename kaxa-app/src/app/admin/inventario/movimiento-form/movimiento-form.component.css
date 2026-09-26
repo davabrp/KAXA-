@@ -1,0 +1,71 @@
+.product-ref {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px dashed var(--line);
+}
+.pname { font-weight: 700; font-size: 14.5px; }
+.pcurrent { font-family: var(--mono); font-size: 11.5px; color: var(--gray-600); }
+
+.field { margin-bottom: 16px; }
+label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+}
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--line);
+  font-size: 14px;
+  background: var(--paper);
+}
+input:focus { outline: none; border-color: var(--ink); }
+
+.tipo-toggle { display: flex; gap: 8px; }
+.tbtn {
+  flex: 1;
+  padding: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.tbtn.active { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+
+.motivo-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chip {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 5px 10px;
+  border: 1px dashed var(--line);
+  background: var(--paper-alt);
+  color: var(--gray-600);
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--ink); color: var(--ink); }
+
+.panel-actions { display: flex; gap: 10px; margin-top: 22px; }
+.btn {
+  flex: 1;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 11px;
+  border: 1.5px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn:disabled { opacity: .4; }

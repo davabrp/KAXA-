@@ -5,6 +5,7 @@ import { Theme } from '../../models/theme';
 @Component({
   selector: 'app-configuracion',
   standalone: true,
+  host: { class: 'view view-fade' },
   templateUrl: './configuracion.component.html',
   styleUrl: './configuracion.component.css',
 })

@@ -23,6 +23,12 @@ export class ProductService {
   bajoStock = computed(() => this._products().filter(p => stockStatus(p) === 'low').length);
   agotados = computed(() => this._products().filter(p => stockStatus(p) === 'out').length);
 
+  adjustStock(id: number, delta: number): void {
+    this._products.update(list =>
+      list.map(p => p.id === id ? { ...p, stock: Math.max(0, p.stock + delta) } : p)
+    );
+  }
+
   add(data: Omit<Product, 'id'>): void {
     this._products.update(list => [...list, { id: this.nextId++, ...data }]);
   }

@@ -1,0 +1,38 @@
+<div class="product-ref">
+  <span class="pname">{{ product.nombre }}</span>
+  <span class="pcurrent">Existencias actuales: <b>{{ product.stock }}</b></span>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="field">
+    <label>Tipo de movimiento</label>
+    <div class="tipo-toggle">
+      <button type="button" class="tbtn" [class.active]="form.value.tipo === 'entrada'"
+        (click)="form.patchValue({ tipo: 'entrada' })">↑ Entrada</button>
+      <button type="button" class="tbtn" [class.active]="form.value.tipo === 'salida'"
+        (click)="form.patchValue({ tipo: 'salida' })">↓ Salida</button>
+      <button type="button" class="tbtn" [class.active]="form.value.tipo === 'ajuste'"
+        (click)="form.patchValue({ tipo: 'ajuste' })">↔ Ajuste</button>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Cantidad</label>
+    <input type="number" formControlName="cantidad" min="1" step="1">
+  </div>
+
+  <div class="field">
+    <label>Motivo</label>
+    <input type="text" formControlName="motivo" placeholder="Escribe o elige una sugerencia">
+    <div class="motivo-chips">
+      @for (m of motivosSugeridos(); track m) {
+        <button type="button" class="chip" (click)="usarMotivo(m)">{{ m }}</button>
+      }
+    </div>
+  </div>
+
+  <div class="panel-actions">
+    <button type="button" class="btn btn-ghost" (click)="cancel.emit()">Cancelar</button>
+    <button type="submit" class="btn" [disabled]="form.invalid">Registrar</button>
+  </div>
+</form>

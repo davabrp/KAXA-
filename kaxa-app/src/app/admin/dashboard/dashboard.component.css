@@ -34,7 +34,7 @@ p { color: var(--gray-600); font-size: 13.5px; margin-top: 4px; }
 }
 .card-head h2 { font-size: 15px; font-weight: 700; }
 .tag {
-  font-family: var(--mono);
+  font-family: Arial, sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   color: var(--gray-400);
@@ -45,7 +45,7 @@ p { color: var(--gray-600); font-size: 13.5px; margin-top: 4px; }
 table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 thead th {
   text-align: left;
-  font-family: var(--mono);
+  font-family: Arial, sans-serif;
   font-size: 10.5px;
   text-transform: uppercase;
   color: var(--gray-600);
@@ -53,7 +53,7 @@ thead th {
   border-bottom: 1.5px solid var(--ink);
 }
 tbody td { padding: 12px 4px; border-bottom: 1px solid var(--line); }
-.num { text-align: right; font-family: var(--mono); }
+.num { text-align: right; font-family: Arial, sans-serif; }
 .prod-name { font-weight: 600; }
 .empty { padding: 30px; text-align: center; color: var(--gray-400); }
 

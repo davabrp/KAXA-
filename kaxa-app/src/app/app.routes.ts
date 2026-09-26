@@ -22,6 +22,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./admin/configuracion/configuracion.component').then(m => m.ConfiguracionComponent),
       },
+      {
+  path: 'inventario',
+  loadComponent: () =>
+    import('./admin/inventario/inventario-list/inventario-list.component').then(m => m.InventarioListComponent),
+},
     ],
   },
 ];

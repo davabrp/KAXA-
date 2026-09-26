@@ -12,9 +12,11 @@ import { Product, stockStatus } from '../../models/product';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
+  host: { class: 'view view-fade' },
   imports: [StatCardComponent, BarChartComponent, DonutChartComponent, BadgeComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
+
 })
 export class DashboardComponent {
   productService = inject(ProductService);

@@ -1,6 +1,9 @@
 @if (visible) {
   <div class="overlay show" (click)="onBackdrop($event)">
-    <div class="panel">
+    <div
+      class="panel"
+      [style.--origin-dx.px]="dx()"
+      [style.--origin-dy.px]="dy()">
       <h3>{{ title }}</h3>
       <ng-content></ng-content>
     </div>
